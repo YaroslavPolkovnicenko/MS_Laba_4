@@ -196,31 +196,37 @@ public class Service {
 
         for(int i = 0; i < kol_request; i++) {
 
+            //k=0;
             time_receipt = GetUniformY();
             current_time += time_receipt;
 
-                if(time_osv.get(k) <= current_time){
+            for(k = 0; k < 5; k++) {
+
+                if (time_osv.get(k) <= current_time) {
                     time_obs = GetExponentialY();
                     time_pr += (current_time - time_osv.get(k));
                     time_osv.set(k, (current_time + time_obs));
                     System.out.println("ЗАЯВКУ ОБСЛУЖИВАЕТ КАНАЛ НОМЕР " + k + "; время поступления заявки = "
                             + df.format(current_time) + "; время обслуживания = " + df.format(time_obs) +
                             "; время освобождения канала = " + df.format(time_osv.get(k)));
-
-                    if(k == kol_channel){
-                        k=0;
-                    }
-                    else{ k++; }
-
-                    continue;
+                    //k = 0;
+                    //continue;
+                    break;
                 }
 
-            else{
+                else if (k == kol_channel) {
                     kol_otk++;
                     System.out.println("Канал номер " + k + " занят. Заявка была отклонена. Время поступления = " + df.format(current_time) +
                             "; время освобождения канала номер " + k + " = " + df.format(time_osv.get(k)));
+                    break;
+                }
+
+                else {
+
+                    System.out.println("Канал номер " + k + " занят. Переходим к каналу номер " + (k + 1));
                 }
             }
+        }
 
         System.out.println("\n Время простоя = " + df.format(time_pr) + "; отказано заявок = " + kol_otk);
         }

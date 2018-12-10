@@ -10,7 +10,7 @@ public class Main {
         DecimalFormat df = new DecimalFormat("#.###");
         df.setRoundingMode(RoundingMode.CEILING);
 
-        Service service = new Service(20, 4);
+        Service service = new Service(150, 4);
 
         service.GO();
 
