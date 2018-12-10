@@ -196,7 +196,6 @@ public class Service {
 
         for(int i = 0; i < kol_request; i++) {
 
-            //k=0;
             time_receipt = GetUniformY();
             current_time += time_receipt;
 
@@ -209,8 +208,7 @@ public class Service {
                     System.out.println("ЗАЯВКУ ОБСЛУЖИВАЕТ КАНАЛ НОМЕР " + k + "; время поступления заявки = "
                             + df.format(current_time) + "; время обслуживания = " + df.format(time_obs) +
                             "; время освобождения канала = " + df.format(time_osv.get(k)));
-                    //k = 0;
-                    //continue;
+
                     break;
                 }
 
@@ -222,7 +220,6 @@ public class Service {
                 }
 
                 else {
-
                     System.out.println("Канал номер " + k + " занят. Переходим к каналу номер " + (k + 1));
                 }
             }
